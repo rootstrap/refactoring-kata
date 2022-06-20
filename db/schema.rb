@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_20_171541) do
+ActiveRecord::Schema.define(version: 2022_06_20_174551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -109,6 +109,14 @@ ActiveRecord::Schema.define(version: 2022_06_20_171541) do
     t.integer "sell_in"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_items_on_organization_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "settings", force: :cascade do |t|
@@ -145,4 +153,5 @@ ActiveRecord::Schema.define(version: 2022_06_20_171541) do
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "exception_hunter_errors", "exception_hunter_error_groups", column: "error_group_id"
+  add_foreign_key "items", "organizations"
 end
