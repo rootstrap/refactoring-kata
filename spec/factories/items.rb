@@ -16,8 +16,9 @@
 #
 FactoryBot.define do
   factory :item do
-    string { "" }
-    integer { "" }
-    integer { "" }
+    name { Faker::Track.name }
+    sell_in { Faker::Number.between(from: 1, to: 50) }
+    quality { Faker::Number.between(from: -1, to: 100) }
+    organization
   end
 end
