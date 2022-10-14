@@ -38,6 +38,15 @@ RSpec.describe Organization, type: :model do
           expect(organization.items.second.quality).to eq 2
         end
       end
+
+      context 'when item is Sulfuras, Hand of Ragnaros' do        
+        let!(:item) { create :item, name: "Sulfuras, Hand of Ragnaros", sell_in: 1, quality: 2, organization_id: organization.id } 
+        
+        it 'doess not change the item' do
+          subject
+          expect(organization.items.first).to eq item
+        end
+      end
     end
   end
 end
