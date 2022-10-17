@@ -6,9 +6,6 @@ describe 'POST api/v1/users/password', type: :request do
   context 'with valid params' do
     let(:params) { { email: user.email } }
 
-    it_behaves_like 'does not check authenticity token'
-    it_behaves_like 'there must not be a Set-Cookie in Header'
-
     it 'returns a successful response' do
       subject
       expect(response).to have_http_status(:success)

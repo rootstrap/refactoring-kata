@@ -18,9 +18,6 @@ describe 'POST api/v1/users/sign_in', type: :request do
       subject
     end
 
-    it_behaves_like 'there must not be a Set-Cookie in Header'
-    it_behaves_like 'does not check authenticity token'
-
     it 'returns success' do
       expect(response).to be_successful
     end

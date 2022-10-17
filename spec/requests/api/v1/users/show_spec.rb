@@ -2,8 +2,6 @@ describe 'GET api/v1/users/:id', type: :request do
   let(:user) { create(:user) }
   subject { get api_v1_user_path, headers: auth_headers, as: :json }
 
-  it_behaves_like 'there must not be a Set-Cookie in Header'
-
   it 'returns success' do
     subject
     expect(response).to have_http_status(:success)
