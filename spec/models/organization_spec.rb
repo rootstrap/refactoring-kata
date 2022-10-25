@@ -17,7 +17,7 @@ RSpec.describe Organization, type: :model do
     context 'with a single item' do
       let(:sell_in) { 5 }
       let(:quality) { 10 }
-      let(:name) { 'normal item' }
+      let(:name) { 'Normal' }
       
       before { create :item, name: name, sell_in: sell_in, quality: quality, organization_id: organization.id }
 
