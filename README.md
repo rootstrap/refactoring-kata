@@ -35,26 +35,27 @@ So in resume:
 
 For "Normal updates":
 
-Substract 1 from sell_in and return unless quality is positive.
-Substract 1 from quality
-Substract 1 from quality if sell_in <= 0
+	- Substract 1 from sell_in and return unless quality is positive.
+	- Substract 1 from quality
+	- Substract 1 from quality if sell_in <= 0
 
 For "Backstage" items:
-Substract 1 from sell_in and return if quality >= 50
-Set quality to 0 if sell_in < 0
-Sum 1 to quality
-Sum 1 to quality if sell_in < 10
-Sum 1 to quality if sell_in < 5
+
+	- Substract 1 from sell_in and return if quality >= 50
+	- Set quality to 0 if sell_in < 0
+	- Sum 1 to quality
+	- Sum 1 to quality if sell_in < 10
+	- Sum 1 to quality if sell_in < 5
 
 For "Sulfuras" items:
-Do nothing
 
+	- Do nothing
 
 For "Aged Brie" items:  
 
-Substract 1 from sell_in and return if quality >= 50.
-Summ 1 to quality If quality < 50
-Summ 1 to quality If sell_in <= 0 && quality < 50
+	- Substract 1 from sell_in and return if quality >= 50.
+	- Summ 1 to quality If quality < 50
+	- Summ 1 to quality If sell_in <= 0 && quality < 50
 
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything
 still works correctly. However, do not alter the Item class or Items property as those belong to the
