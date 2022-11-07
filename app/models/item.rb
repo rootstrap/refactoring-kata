@@ -20,60 +20,6 @@ class Item < ApplicationRecord
     end
     
     def update #middle man -> feature envy
-      if self.is_normal?
-        self.normal_update
-      elsif self.is_aged_brie?
-        self.aged_brie_update
-      elsif self.is_sulfuras?
-        self.sulfuras_update
-      elsif self.is_backstage_pass?
-        self.backstage_update
-      end
-    end
-
-    def normal_update
-      self.sell_in -= 1
-      return unless self.quality.positive?
-      
-      self.quality -= 1 if self.sell_in <= 0
-      self.quality -= 1
-    end
-
-    def aged_brie_update
-      self.sell_in -= 1
-      return if self.quality >= 50
-
-      self.quality += 1
-      self.quality += 1 if self.sell_in <= 0 && self.quality < 50
-    end
-
-    def backstage_update
-      self.sell_in -= 1
-      return if self.quality >= 50
-      return self.quality = 0 if self.sell_in < 0
-
-      self.quality += 1
-      self.quality += 1 if self.sell_in < 10
-      self.quality += 1 if self.sell_in < 5
-    end
-
-    def sulfuras_update
-      return
-    end
-
-    def is_normal?
-      self.name == "Normal"
-    end
-
-    def is_sulfuras?
-      self.name == "Sulfuras, Hand of Ragnaros"
-    end
-
-    def is_aged_brie?
-      self.name == "Aged Brie"
-    end
-
-    def is_backstage_pass?
-      self.name == "Backstage passes to a TAFKAL80ETC concert"
+      QualityUpdater.new.update(self)
     end
 end
